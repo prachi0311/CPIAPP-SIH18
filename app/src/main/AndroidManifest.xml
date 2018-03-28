@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".Activities.SignUp" />
         <activity android:name=".Activities.ScheduleActivity" />
+        <activity android:name=".Activities.ItemListActivity"></activity>
         <activity android:name=".Activities.UserDateList" />
         <activity android:name=".Activities.SelectionActivity"/>
         <activity android:name=".Activities.MainActivity"/>
