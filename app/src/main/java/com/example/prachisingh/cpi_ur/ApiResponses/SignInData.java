@@ -8,11 +8,9 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class SignInData {
-    @SerializedName("access_token")
-    @Expose
-    private String accessToken;
+    SignInUser user;
 
-    public String getAccessToken() {
-        return accessToken;
+    public SignInUser getUser() {
+        return user;
     }
 }

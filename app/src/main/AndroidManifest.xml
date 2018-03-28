@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.prachisingh.cpi_ur">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -23,7 +24,7 @@
         <activity android:name=".Activities.SignUp" />
         <activity android:name=".Activities.ScheduleActivity" />
         <activity android:name=".Activities.UserDateList" />
-        <activity android:name=".Activities.SelectionActivity"></activity>
+        <activity android:name=".Activities.SelectionActivity"/>
+        <activity android:name=".Activities.MainActivity"/>
     </application>
-
 </manifest>

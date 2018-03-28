@@ -24,9 +24,9 @@ public class SelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection);
-        Intent i=getIntent();
-        username=i.getStringExtra("username");
-        accessToken=i.getStringExtra("access_token");
+//        Intent i=getIntent();
+//        username=i.getStringExtra("username");
+//        accessToken=i.getStringExtra("access_token");
         marketSurevey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,10 +37,9 @@ public class SelectionActivity extends AppCompatActivity {
         priceCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(SelectionActivity.this,UserDateList.class);
-                i.putExtra("username",username);
-                i.putExtra("access_token",accessToken);
-                startActivity(i);
+//                Intent i=new Intent(SelectionActivity.this,UserDateList.class);
+//                i.putExtra("username",username);
+//                i.putExtra("")
             }
         });
     }

@@ -35,6 +35,9 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferences sp;
     SharedPreferences.Editor editor;
     String acessToken;
+    int userId;
+    double latitude;
+    double longitude;
    // String userNameString;
 
 
@@ -48,7 +51,9 @@ public class LoginActivity extends AppCompatActivity {
         if(!sp.getString("access_token","").equals("")){
             Intent i=new Intent(LoginActivity.this,ScheduleActivity.class);
             i.putExtra("access_token",acessToken);
-            i.putExtra("user_name",userName.getText().toString());
+            i.putExtra("user_id",userId);
+            i.putExtra("user_lat",latitude);
+            i.putExtra("user_lon",longitude);
             startActivity(i);
         }
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -74,11 +79,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
                 if(response.body().getStatus()==200){
-                    acessToken=response.body().getData().getAccessToken();
-                    editor.putString("access_token",response.body().getData().getAccessToken());
+                    acessToken=response.body().getData().getUser().getAccessToken();
+                    userId=response.body().getData().getUser().getId();
+                    latitude=response.body().getData().getUser().getLatitude();
+                    longitude=response.body().getData().getUser().getLongitude();
+                    editor.putString("access_token",response.body().getData().getUser().getAccessToken());
                     editor.commit();
                     Intent i=new Intent(LoginActivity.this,ScheduleActivity.class);
                     i.putExtra("access_token",acessToken);
+                    i.putExtra("user_id",response.body().getData().getUser().getId());
+                    i.putExtra("user_lat",latitude);
+                    i.putExtra("user_lon",longitude);
                     startActivity(i);
                     Log.i(tag,response.body().getMessage());
                 }
