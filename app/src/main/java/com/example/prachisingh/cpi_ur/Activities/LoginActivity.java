@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferences sp;
     SharedPreferences.Editor editor;
     String acessToken;
+   // String userNameString;
 
 
     @Override
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         if(!sp.getString("access_token","").equals("")){
             Intent i=new Intent(LoginActivity.this,ScheduleActivity.class);
             i.putExtra("access_token",acessToken);
+            i.putExtra("user_name",userName.getText().toString());
             startActivity(i);
         }
         signUpButton.setOnClickListener(new View.OnClickListener() {
