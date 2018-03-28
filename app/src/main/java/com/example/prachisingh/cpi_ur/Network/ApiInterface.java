@@ -3,6 +3,7 @@ package com.example.prachisingh.cpi_ur.Network;
 import com.example.prachisingh.cpi_ur.ApiResponses.ShopScheduleResponse;
 import com.example.prachisingh.cpi_ur.ApiResponses.SignInResponse;
 import com.example.prachisingh.cpi_ur.ApiResponses.SignUpResponse;
+import com.example.prachisingh.cpi_ur.ApiResponses.userDatesResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -23,6 +24,9 @@ public interface ApiInterface {
 
     @GET("shops-to-visit")
     Call<ShopScheduleResponse> shopschedule(@Query("date") String date,@Query("token") String accessToken);
+
+    @GET("dates")
+    Call<userDatesResponse> userDates(@Query("username") String username,@Query("token") String accessToken);
 
 
 }

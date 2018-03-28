@@ -43,6 +43,7 @@ public class ScheduleActivity extends AppCompatActivity {
     ShopListAdapter adapter;
     Intent i;
     String accessToken;
+    String selectedDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +54,8 @@ public class ScheduleActivity extends AppCompatActivity {
         addresses=new ArrayList<>();
         i=getIntent();
         accessToken=i.getStringExtra("access_token");
-
-        adapter=new ShopListAdapter(ScheduleActivity.this,shopList,addresses);
+        selectedDate=i.getStringExtra("selected_date");
+        adapter=new ShopListAdapter(ScheduleActivity.this,shopList,addresses,selectedDate);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));

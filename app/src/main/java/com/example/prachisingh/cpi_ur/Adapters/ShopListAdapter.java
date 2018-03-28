@@ -1,6 +1,7 @@
 package com.example.prachisingh.cpi_ur.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,11 +25,13 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopLi
     Context mcontext;
     ArrayList<ShopScheduleData> mshopList;
     ArrayList<String> mshopAddresses;
+    String mSelectedDate;
 
-    public ShopListAdapter(Context mcontext, ArrayList<ShopScheduleData> mshopList,ArrayList<String> mshopAddresses) {
+    public ShopListAdapter(Context mcontext, ArrayList<ShopScheduleData> mshopList,ArrayList<String> mshopAddresses,String selectedDate) {
         this.mcontext = mcontext;
         this.mshopList = mshopList;
         this.mshopAddresses= mshopAddresses;
+        this.mSelectedDate=selectedDate;
     }
 
     @Override
@@ -38,9 +41,19 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopLi
     }
 
     @Override
-    public void onBindViewHolder(ShopListAdapter.ShopListViewHolder holder, int position) {
+    public void onBindViewHolder(ShopListAdapter.ShopListViewHolder holder, final int position) {
         holder.shopName.setText(mshopList.get(position).getName());
         holder.shopAddress.setText(mshopAddresses.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent i=new Intent(mcontext,ItemListActivity.class);
+//                i.putExtra("shop_id",mshopList.get(position).getId());
+//                i.putExtra("selected_date",mSelectedDate);
+//                mcontext.startActivity(i);
+//
+            }
+        });
 
     }
 

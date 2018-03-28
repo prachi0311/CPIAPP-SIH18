@@ -10,8 +10,8 @@
         android:id="@+id/login_username"
         android:hint="Username"
 
-        android:layout_width="@dimen/editText_width"
-        android:layout_height="@dimen/editText_height"
+        android:layout_width="@dimen/view_width"
+        android:layout_height="@dimen/view_height"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="184dp"
@@ -26,7 +26,7 @@
 
     <EditText
         android:id="@+id/login_password"
-        android:layout_width="@dimen/editText_width"
+        android:layout_width="@dimen/view_width"
         android:layout_height="@dimen/editText_height"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
