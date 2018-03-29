@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         sp=getSharedPreferences("CPI",MODE_PRIVATE);
         editor=sp.edit();
         if(!sp.getString("access_token","").equals("")){
-            Intent i=new Intent(LoginActivity.this,ScheduleActivity.class);
+            Intent i=new Intent(LoginActivity.this,MainActivity.class);
             i.putExtra("access_token",acessToken);
             i.putExtra("user_id",userId);
             i.putExtra("user_lat",latitude);
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                     longitude=response.body().getData().getUser().getLongitude();
                     editor.putString("access_token",response.body().getData().getUser().getAccessToken());
                     editor.commit();
-                    Intent i=new Intent(LoginActivity.this,ScheduleActivity.class);
+                    Intent i=new Intent(LoginActivity.this,MainActivity.class);
                     i.putExtra("access_token",acessToken);
                     i.putExtra("user_id",response.body().getData().getUser().getId());
                     i.putExtra("user_lat",latitude);

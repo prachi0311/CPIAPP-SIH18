@@ -26,8 +26,8 @@ public interface ApiInterface {
     @GET("shops-to-visit")
     Call<ShopScheduleResponse> shopschedule(@Query("date") String date,@Query("token") String accessToken);
 
-    @GET("dates")
-    Call<userDatesResponse> userDates(@Query("username") String username,@Query("token") String accessToken);
+    @GET("schedule")
+    Call<userDatesResponse> userDates(@Query("token") String accessToken,@Query("month") int month,@Query("year") int year);
 
     @GET("schedule")
     Call<ScheduleResponse> getSchedule(@Query("userId") long userId, @Query("date") String date);

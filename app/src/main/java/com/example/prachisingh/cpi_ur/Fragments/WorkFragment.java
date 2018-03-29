@@ -13,6 +13,7 @@ import com.example.prachisingh.cpi_ur.Activities.UserDateList;
 import com.example.prachisingh.cpi_ur.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by prachisingh on 28/03/18.
@@ -28,14 +29,15 @@ public class WorkFragment extends ProfileFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_schedule, container, false);
+        View view = inflater.inflate(R.layout.activity_selection, container, false);
+        ButterKnife.bind(this,view);
         userId=getActivity().getIntent().getIntExtra("user_id",-1);
         accessToken=getActivity().getIntent().getStringExtra("access_token");
         priceCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), UserDateList.class);
-                i.putExtra("user_is", userId);
+                i.putExtra("user_id", userId);
                 i.putExtra("access_token", accessToken);
                 startActivity(i);
             }

@@ -45,7 +45,7 @@ public class ItemListActivity extends AppCompatActivity {
                 showDialogueForItem(i);
             }
         });
-        getShopList();
+      //  getShopList();
 
     }
 
@@ -65,21 +65,21 @@ public class ItemListActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void getShopList() {
-        Calendar calendar = Calendar.getInstance();
-        String date = new SimpleDateFormat("E, dd MMM yyyy").format(calendar);
-        ApiClient.getAuthorizedApiInterface().getSchedule(Utils.getUserId(), date).enqueue(new Callback<ScheduleResponse>() {
-            @Override
-            public void onResponse(Call<ScheduleResponse> call, Response<ScheduleResponse> response) {
-                if (response.isSuccessful()){
-                    // populate list
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ScheduleResponse> call, Throwable t) {
-
-            }
-        });
-    }
+//    private void getShopList() {
+//        Calendar calendar = Calendar.getInstance();
+//        String date = new SimpleDateFormat("E, dd MMM yyyy").format(calendar);
+//        ApiClient.getAuthorizedApiInterface().getSchedule(Utils.getUserId(), date).enqueue(new Callback<ScheduleResponse>() {
+//            @Override
+//            public void onResponse(Call<ScheduleResponse> call, Response<ScheduleResponse> response) {
+//                if (response.isSuccessful()){
+//                    // populate list
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ScheduleResponse> call, Throwable t) {
+//
+//            }
+//        });
+//    }
 }

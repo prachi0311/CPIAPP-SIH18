@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_profile:
                     mViewPager.setCurrentItem(0, true);
                     return true;
-                case R.id.navigation_work:
+                case R.id.navigation_home:
                     mViewPager.setCurrentItem(1, true);
                     return true;
                 case R.id.navigation_map:
