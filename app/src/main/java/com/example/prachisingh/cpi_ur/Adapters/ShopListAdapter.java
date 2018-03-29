@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.prachisingh.cpi_ur.ApiResponses.ShopListOfDay;
 import com.example.prachisingh.cpi_ur.ApiResponses.ShopScheduleData;
 import com.example.prachisingh.cpi_ur.R;
 
@@ -23,11 +24,11 @@ import butterknife.ButterKnife;
 
 public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopListViewHolder> {
     Context mcontext;
-    ArrayList<ShopScheduleData> mshopList;
+    ArrayList<ShopListOfDay> mshopList;
     ArrayList<String> mshopAddresses;
     String mSelectedDate;
 
-    public ShopListAdapter(Context mcontext, ArrayList<ShopScheduleData> mshopList,ArrayList<String> mshopAddresses,String selectedDate) {
+    public ShopListAdapter(Context mcontext, ArrayList<ShopListOfDay> mshopList,ArrayList<String> mshopAddresses,String selectedDate) {
         this.mcontext = mcontext;
         this.mshopList = mshopList;
         this.mshopAddresses= mshopAddresses;

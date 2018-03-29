@@ -18,6 +18,7 @@ import com.example.prachisingh.cpi_ur.Network.ApiInterface;
 import com.example.prachisingh.cpi_ur.R;
 import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -51,6 +52,7 @@ public class UserDateList extends AppCompatActivity {
         year=date.getYear();
         username=i.getStringExtra("username");
         accessToken=i.getStringExtra("access_token");
+        Log.i("access_token",accessToken);
         datelist=new ArrayList<>() ;
         map=new HashMap<>();
         adapter=new ArrayAdapter<String>(UserDateList.this,android.R.layout.simple_list_item_1,datelist);
@@ -60,8 +62,10 @@ public class UserDateList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent=new Intent(UserDateList.this,ScheduleActivity.class);
                 intent.putExtra("selected_date",datelist.get(i));
+                Bundle args = new Bundle();
+                args.putSerializable("shops_of_day",(Serializable)map.get(datelist.get(i)));
+                intent.putExtra("BUNDLE",args);
                 startActivity(intent);
-
             }
         });
         getDates(month,year);
@@ -70,8 +74,10 @@ public class UserDateList extends AppCompatActivity {
     }
 
     private void getDates(int month,int year) {
+        Log.i("month",String.valueOf(month));
+        Log.i("year",String.valueOf(year));
         ApiInterface apiInterface= ApiClient.getAuthorizedApiInterface();
-        retrofit2.Call<userDatesResponse> call=apiInterface.userDates("fc05a4758b5ad958f0a3bf55e470dbea",month,year);
+        retrofit2.Call<userDatesResponse> call=apiInterface.userDates(accessToken,month+2,year+1900);
         call.enqueue(new Callback<userDatesResponse>() {
             @Override
             public void onResponse(retrofit2.Call<userDatesResponse> call, Response<userDatesResponse> response) {
@@ -79,7 +85,7 @@ public class UserDateList extends AppCompatActivity {
                 if(response.isSuccessful()){
                     map=response.body().getData();
                     datelist.addAll(map.keySet());
-                  //  shopsTOVisit.addAll(map.get(datelist.get(i)));
+                   // shopsTOVisit.addAll(map.get(datelist.get(i)));
                     adapter.notifyDataSetChanged();
                 }
             }

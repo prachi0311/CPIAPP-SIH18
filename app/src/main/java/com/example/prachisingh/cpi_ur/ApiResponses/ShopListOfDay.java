@@ -13,10 +13,10 @@ public class ShopListOfDay {
     public int id;
     @SerializedName("latitude")
     @Expose
-    public int latitude;
+    public double latitude;
     @SerializedName("longitude")
     @Expose
-    public int longitude;
+    public double longitude;
     @SerializedName("created_at")
     @Expose
     public String createdAt;
@@ -37,11 +37,11 @@ public class ShopListOfDay {
         return id;
     }
 
-    public int getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public int getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 

@@ -48,14 +48,14 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         sp=getSharedPreferences("CPI",MODE_PRIVATE);
         editor=sp.edit();
-        if(!sp.getString("access_token","").equals("")){
-            Intent i=new Intent(LoginActivity.this,MainActivity.class);
-            i.putExtra("access_token",acessToken);
-            i.putExtra("user_id",userId);
-            i.putExtra("user_lat",latitude);
-            i.putExtra("user_lon",longitude);
-            startActivity(i);
-        }
+//        if(sp.getString("access_token","")!=null){
+//            Intent i=new Intent(LoginActivity.this,MainActivity.class);
+//            i.putExtra("access_token",sp.getString("access_token",null));
+//            i.putExtra("user_id",userId);
+//            i.putExtra("user_lat",latitude);
+//            i.putExtra("user_lon",longitude);
+//            startActivity(i);
+//        }
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

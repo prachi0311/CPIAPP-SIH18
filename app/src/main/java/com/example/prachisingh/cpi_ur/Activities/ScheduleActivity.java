@@ -18,6 +18,7 @@ import android.telecom.Call;
 import android.util.Log;
 
 import com.example.prachisingh.cpi_ur.Adapters.ShopListAdapter;
+import com.example.prachisingh.cpi_ur.ApiResponses.ShopListOfDay;
 import com.example.prachisingh.cpi_ur.ApiResponses.ShopScheduleData;
 import com.example.prachisingh.cpi_ur.ApiResponses.ShopScheduleResponse;
 import com.example.prachisingh.cpi_ur.Network.ApiClient;
@@ -38,57 +39,63 @@ import retrofit2.Response;
 public class ScheduleActivity extends AppCompatActivity {
     @BindView(R.id.shop_list_recyclerview)
     RecyclerView recyclerView;
-    ArrayList<ShopScheduleData> shopList;
     ArrayList<String> addresses;
     ShopListAdapter adapter;
     Intent i;
     String accessToken;
     String selectedDate;
+    ArrayList<ShopListOfDay> shopList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
         ButterKnife.bind(this);
-        shopList=new ArrayList<>();
+     //   shopList=new ArrayList<>();
         addresses=new ArrayList<>();
         i=getIntent();
+        Bundle args = i.getBundleExtra("BUNDLE");
+        shopList = (ArrayList<ShopListOfDay>) args.getSerializable("shops_of_day");
+        Log.i("shoplistsize",String.valueOf(shopList.size()));
         accessToken=i.getStringExtra("access_token");
         selectedDate=i.getStringExtra("selected_date");
+        for (int i = 0; i < shopList.size(); i++) {
+                        addresses.add(i, String.valueOf(getAddress(shopList.get(i).getLatitude(), shopList.get(i).getLongitude())));
+                    }
         adapter=new ShopListAdapter(ScheduleActivity.this,shopList,addresses,selectedDate);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        getShopList();
+      //  getShopList();
 
     }
 
-    private void getShopList() {
-        ApiInterface apiInterface= ApiClient.getAuthorizedApiInterface();
-        retrofit2.Call<ShopScheduleResponse> call=apiInterface.shopschedule("Mon, 26 Mar 2018","87d3c6d08a4d77d429f5ddb63e63a261");
-        //Log.i("token",accessToken);
-        call.enqueue(new Callback<ShopScheduleResponse>() {
-            @Override
-            public void onResponse(retrofit2.Call<ShopScheduleResponse> call, Response<ShopScheduleResponse> response) {
-                Log.i("code",String.valueOf(response.code()));
-                if(response.isSuccessful()) {
-                    shopList.addAll(response.body().getData());
-                    for (int i = 0; i < response.body().getData().size(); i++) {
-                        addresses.add(i, String.valueOf(getAddress(response.body().getData().get(i).getLatitude(), response.body().getData().get(i).getLongitude())));
-                    }
-                    adapter.notifyDataSetChanged();
-                    Log.i("shopdata", response.body().getMessage());
-                }
-
-            }
-
-            @Override
-            public void onFailure(retrofit2.Call<ShopScheduleResponse> call, Throwable t) {
-
-            }
-        });
-
-    }
+//    private void getShopList() {
+//        ApiInterface apiInterface= ApiClient.getAuthorizedApiInterface();
+//        retrofit2.Call<ShopScheduleResponse> call=apiInterface.shopschedule("Mon, 26 Mar 2018","87d3c6d08a4d77d429f5ddb63e63a261");
+//        //Log.i("token",accessToken);
+//        call.enqueue(new Callback<ShopScheduleResponse>() {
+//            @Override
+//            public void onResponse(retrofit2.Call<ShopScheduleResponse> call, Response<ShopScheduleResponse> response) {
+//                Log.i("code",String.valueOf(response.code()));
+//                if(response.isSuccessful()) {
+//                    shopList.addAll(response.body().getData());
+//                    for (int i = 0; i < response.body().getData().size(); i++) {
+//                        addresses.add(i, String.valueOf(getAddress(response.body().getData().get(i).getLatitude(), response.body().getData().get(i).getLongitude())));
+//                    }
+//                    adapter.notifyDataSetChanged();
+//                    Log.i("shopdata", response.body().getMessage());
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(retrofit2.Call<ShopScheduleResponse> call, Throwable t) {
+//
+//            }
+//        });
+//
+//    }
 
     public String  getAddress(double latitude, double longitude)
     {
@@ -101,7 +108,7 @@ public class ScheduleActivity extends AppCompatActivity {
         {
             // Here 1 represent max location result to returned, by documents it recommended 1 to 5
             addresses = geocoder.getFromLocation(latitude,longitude, 1);
-            Log.i("address",String.valueOf(addresses.get(0)));
+           // Log.i("address",String.valueOf(addresses.get(0)));
             adress=addresses.get(0).toString().substring(24,addresses.get(0).toString().indexOf("India"));
             return adress;
 
