@@ -71,7 +71,7 @@ public class UserDateList extends AppCompatActivity {
 
     private void getDates(int month,int year) {
         ApiInterface apiInterface= ApiClient.getAuthorizedApiInterface();
-        retrofit2.Call<userDatesResponse> call=apiInterface.userDates(accessToken,month,year);
+        retrofit2.Call<userDatesResponse> call=apiInterface.userDates("fc05a4758b5ad958f0a3bf55e470dbea",month,year);
         call.enqueue(new Callback<userDatesResponse>() {
             @Override
             public void onResponse(retrofit2.Call<userDatesResponse> call, Response<userDatesResponse> response) {
