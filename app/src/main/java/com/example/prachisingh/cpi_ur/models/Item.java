@@ -18,6 +18,9 @@ public class Item {
     @Expose
     private String itemCode;
     private float price;
+    @SerializedName("previous_month_price")
+    @Expose
+    private float prevMonthPrice;
 
     public Integer getItemId() {
         return itemId;
@@ -37,5 +40,9 @@ public class Item {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public float getPrevMonthPrice() {
+        return prevMonthPrice;
     }
 }

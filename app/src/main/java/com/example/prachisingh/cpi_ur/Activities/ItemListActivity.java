@@ -1,5 +1,6 @@
 package com.example.prachisingh.cpi_ur.Activities;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -7,13 +8,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.prachisingh.cpi_ur.Adapters.ItemListAdapter;
 import com.example.prachisingh.cpi_ur.ApiResponses.ItemResponse;
+import com.example.prachisingh.cpi_ur.Fragments.ItemDialogFragment;
 import com.example.prachisingh.cpi_ur.Network.ApiClient;
 import com.example.prachisingh.cpi_ur.R;
 import com.example.prachisingh.cpi_ur.models.Item;
@@ -54,6 +58,8 @@ public class ItemListActivity extends AppCompatActivity implements ItemListAdapt
         final int itemId = item.getItemId();
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_price_update, null);
         final EditText priceEditText = dialogView.findViewById(R.id.dialog_price_view);
+        TextView prevMonthPriceView = dialogView.findViewById(R.id.prev_month_price_view);
+        prevMonthPriceView.setText(item.getPrevMonthPrice()+"");
         if (item.getPrice() != 0)
                 priceEditText.setText(item.getPrice().toString());
         new AlertDialog.Builder(this)
@@ -72,7 +78,9 @@ public class ItemListActivity extends AppCompatActivity implements ItemListAdapt
                 .setView(dialogView)
                 .create()
                 .show();
-        priceEditText.requestFocusFromTouch();
+        // Add fragment later
+//        ItemDialogFragment dialogFragment = new ItemDialogFragment();
+//        dialogFragment.setArguments();
     }
 
     private void updatePrice(final int position,final float price) {
