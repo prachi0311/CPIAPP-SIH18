@@ -92,7 +92,7 @@ public class UserDateList extends AppCompatActivity {
                 if(response.isSuccessful()){
                     map=response.body().getData();
                     datelist.addAll(map.keySet());
-                   // shopsTOVisit.addAll(map.get(datelist.get(i)));
+                 //   shopsTOVisit.addAll(map.get(datelist.get(i)));
                     adapter.notifyDataSetChanged();
                 }
             }
