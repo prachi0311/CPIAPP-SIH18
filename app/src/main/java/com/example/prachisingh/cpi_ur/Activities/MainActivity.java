@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         //Log.i("fcm_key",FirebaseInstanceId.getInstance().getToken());
         mViewPager.setCurrentItem(1,true);
+        navigation.setSelectedItemId(R.id.navigation_home);
     }
 
     class SectionsPagerAdapter extends FragmentPagerAdapter {
