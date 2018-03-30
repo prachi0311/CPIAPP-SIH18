@@ -25,10 +25,6 @@ public interface ApiInterface {
     @POST("signup")
     Call<SignUpResponse> userSignUp(@Query("username") String username, @Query("password") String password, @Query("reconfirm_password") String reconfirm_password);
 
-    // TODO : Remove shop to visit
-    @GET("shops-to-visit")
-    Call<ShopScheduleResponse> shopschedule(@Query("date") String date,@Query("token") String accessToken);
-
     @GET("schedule")
     Call<userDatesResponse> userDates(@Query("token") String accessToken,@Query("month") int month,@Query("year") int year);
 

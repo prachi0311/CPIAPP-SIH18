@@ -70,36 +70,7 @@ public class ScheduleActivity extends AppCompatActivity {
         adapter=new ShopListAdapter(ScheduleActivity.this,shopList,addresses,selectedDate);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-      //  getShopList();
-
     }
-
-//    private void getShopList() {
-//        ApiInterface apiInterface= ApiClient.getAuthorizedApiInterface();
-//        retrofit2.Call<ShopScheduleResponse> call=apiInterface.shopschedule("Mon, 26 Mar 2018","87d3c6d08a4d77d429f5ddb63e63a261");
-//        //Log.i("token",accessToken);
-//        call.enqueue(new Callback<ShopScheduleResponse>() {
-//            @Override
-//            public void onResponse(retrofit2.Call<ShopScheduleResponse> call, Response<ShopScheduleResponse> response) {
-//                Log.i("code",String.valueOf(response.code()));
-//                if(response.isSuccessful()) {
-//                    shopList.addAll(response.body().getData());
-//                    for (int i = 0; i < response.body().getData().size(); i++) {
-//                        addresses.add(i, String.valueOf(getAddress(response.body().getData().get(i).getLatitude(), response.body().getData().get(i).getLongitude())));
-//                    }
-//                    adapter.notifyDataSetChanged();
-//                    Log.i("shopdata", response.body().getMessage());
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(retrofit2.Call<ShopScheduleResponse> call, Throwable t) {
-//
-//            }
-//        });
-//
-//    }
 
     public String  getAddress(double latitude, double longitude)
     {
@@ -110,9 +81,7 @@ public class ScheduleActivity extends AppCompatActivity {
 
         try
         {
-            // Here 1 represent max location result to returned, by documents it recommended 1 to 5
             addresses = geocoder.getFromLocation(latitude,longitude, 1);
-           // Log.i("address",String.valueOf(addresses.get(0)));
             if(addresses.size()!=0){
                 shopAddress=addresses.get(0).getAddressLine(0);}
             else shopAddress="---";
