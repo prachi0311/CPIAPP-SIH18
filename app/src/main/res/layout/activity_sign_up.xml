@@ -70,7 +70,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/login_grey_bg"
+        android:background="@drawable/login_accent_bg"
         android:gravity="center_vertical"
         android:text="SIGN UP"
         android:textColor="#ffffff"
