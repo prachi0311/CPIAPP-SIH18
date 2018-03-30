@@ -9,21 +9,24 @@
 
     <EditText
         android:id="@+id/signup_username"
-        android:hint="Username"
-        android:textColor="#ffffff"
         android:layout_width="@dimen/view_width"
         android:layout_height="@dimen/view_height"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/light_blue_bg"
+        android:hint="Username"
         android:padding="4dp"
         android:singleLine="true"
         android:textAlignment="center"
+        android:textColor="#ffffff"
         android:textColorHint="@color/grey"
+        app:layout_constraintBottom_toTopOf="@id/signup_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.22000003"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <EditText
         android:id="@+id/signup_password"
@@ -31,14 +34,15 @@
         android:layout_height="@dimen/view_height"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/light_blue_bg"
         android:hint="Password"
+        android:inputType="textPassword"
         android:padding="4dp"
         android:singleLine="true"
-        android:inputType="textPassword"
         android:textAlignment="center"
         android:textColorHint="@color/grey"
+        app:layout_constraintBottom_toTopOf="@id/signup_confirm_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_username" />
@@ -49,7 +53,7 @@
         android:layout_height="@dimen/view_height"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/light_blue_bg"
         android:hint="Confirm Password"
         android:inputType="textPassword"
@@ -57,33 +61,33 @@
         android:singleLine="true"
         android:textAlignment="center"
         android:textColorHint="@color/grey"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_username" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_password" />
 
 
     <Button
         android:id="@+id/signup"
         android:layout_width="150dp"
-        android:layout_height="28dp"
-        android:layout_marginBottom="152dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/login_accent_bg"
         android:gravity="center_vertical"
         android:text="SIGN UP"
-        android:textColor="#ffffff"
         android:textAlignment="center"
+        android:textColor="#ffffff"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.401"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_confirm_password"
-        app:layout_constraintVertical_bias="0.52"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="44dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:layout_width="70dp"
