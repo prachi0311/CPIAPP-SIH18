@@ -61,6 +61,7 @@
         android:hint="Username"
         android:padding="4dp"
         android:paddingStart="55dp"
+        android:paddingLeft="55dp"
         android:singleLine="true"
         android:textColorHint="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,6 +90,7 @@
             android:inputType="textPassword"
             android:padding="4dp"
             android:paddingStart="55dp"
+            android:paddingLeft="55dp"
             android:singleLine="true"
             android:textColorHint="@color/grey" />
 
@@ -104,7 +106,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/login_grey_bg"
+        android:background="@drawable/login_accent_bg"
         android:gravity="center_vertical"
         android:text="LOGIN"
         android:textAlignment="center"
@@ -125,7 +127,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/login_grey_bg"
+        android:background="@drawable/login_accent_bg"
         android:gravity="center_vertical"
         android:text="SIGN UP"
         android:textAlignment="center"
