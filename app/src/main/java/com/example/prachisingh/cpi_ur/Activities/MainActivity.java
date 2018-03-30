@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         //Log.i("fcm_key",FirebaseInstanceId.getInstance().getToken());
         mViewPager.setCurrentItem(1,true);
         navigation.setSelectedItemId(R.id.navigation_home);
-       // updateofflinedb();
+        updateofflinedb();
 
     }
 
@@ -83,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     items.addAll(response.body().getData().getItems());
                     markets.addAll(response.body().getData().getMarkets());
+                    shops.addAll(response.body().getData().getShops());
+
 
                 }
             }

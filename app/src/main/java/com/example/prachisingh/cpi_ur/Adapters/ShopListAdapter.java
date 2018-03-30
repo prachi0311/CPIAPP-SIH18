@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.prachisingh.cpi_ur.Activities.ItemListActivity;
+import com.example.prachisingh.cpi_ur.Network.ApiClient;
+import com.example.prachisingh.cpi_ur.Network.ApiInterface;
 import com.example.prachisingh.cpi_ur.models.Shop;
 import com.example.prachisingh.cpi_ur.R;
 
@@ -26,6 +28,7 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopLi
     ArrayList<Shop> mshopList;
     ArrayList<String> mshopAddresses;
     String mSelectedDate;
+    Intent i;
 
     public ShopListAdapter(Context mcontext, ArrayList<Shop> mshopList, ArrayList<String> mshopAddresses, String selectedDate) {
         this.mcontext = mcontext;
@@ -47,10 +50,16 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopLi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(mcontext,ItemListActivity.class);
+                i=new Intent(mcontext,ItemListActivity.class);
                 i.putExtra("shop_id",mshopList.get(position).getId());
                 i.putExtra("selected_date",mSelectedDate);
+                verifyLatLon(mshopList.get(position).getLatitude(),mshopList.get(position).getLongitude());
                 mcontext.startActivity(i);
+            }
+
+            private void verifyLatLon(double latitude, double longitude) {
+                ApiInterface apiInterface=ApiClient.getAuthorizedApiInterface();
+
             }
         });
 
