@@ -65,7 +65,6 @@ public class ScheduleActivity extends AppCompatActivity {
         adapter=new ShopListAdapter(ScheduleActivity.this,shopList,addresses,selectedDate);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
       //  getShopList();
 
     }
@@ -100,8 +99,8 @@ public class ScheduleActivity extends AppCompatActivity {
     public String  getAddress(double latitude, double longitude)
     {
         Geocoder geocoder;
-        List addresses;
-        String adress;
+        List<Address> addresses;
+        String shopAddress;
         geocoder = new Geocoder(this, Locale.getDefault());
 
         try
@@ -110,9 +109,9 @@ public class ScheduleActivity extends AppCompatActivity {
             addresses = geocoder.getFromLocation(latitude,longitude, 1);
            // Log.i("address",String.valueOf(addresses.get(0)));
             if(addresses.size()!=0){
-            adress=addresses.get(0).toString().substring(24,addresses.get(0).toString().indexOf("India"));}
-            else adress="ADDRESS : NOT FOUND";
-            return adress;
+                shopAddress=addresses.get(0).getAddressLine(0);}
+            else shopAddress="---";
+            return shopAddress;
 
         } catch (IOException e) {
             e.printStackTrace();
