@@ -29,7 +29,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.login_username)
     EditText userName;
-    @BindView(R.id.login_password)
+    @BindView(R.id.login_password_edit_text)
     EditText password;
     @BindView(R.id.sign_up)
     Button signUpButton;

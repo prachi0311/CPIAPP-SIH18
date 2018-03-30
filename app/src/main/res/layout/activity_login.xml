@@ -4,23 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/signin_bg"
+    android:background="@android:color/white"
     tools:context="com.example.prachisingh.cpi_ur.Activities.LoginActivity">
 
     <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline2"
+        android:src="@drawable/sign_up_bg" />
+
+    <ImageView
         android:id="@+id/login_app_logo"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/app_logo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/app_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.072" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/app_name"
@@ -29,17 +39,16 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:text="CPIAPP"
-        android:textColor="#ffffff"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.297" />
+        app:layout_constraintTop_toBottomOf="@+id/login_app_logo"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/login_username"
@@ -47,34 +56,43 @@
         android:layout_height="@dimen/view_height"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/light_blue_bg"
         android:hint="Username"
         android:padding="4dp"
+        android:paddingStart="55dp"
         android:singleLine="true"
-        android:textAlignment="center"
         android:textColorHint="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/app_name" />
 
-    <EditText
+    <android.support.v7.widget.CardView
+        app:cardElevation="4dp"
+        app:cardCornerRadius="20dp"
         android:id="@+id/login_password"
-        android:layout_width="@dimen/view_width"
-        android:layout_height="@dimen/view_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/light_blue_bg"
-        android:hint="Password"
-        android:padding="4dp"
-        android:singleLine="true"
-        android:inputType="textPassword"
-        android:textAlignment="center"
-        android:textColorHint="@color/grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_username" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/login_username">
+
+        <EditText
+            android:id="@+id/login_password_edit_text"
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_height"
+            android:background="@drawable/light_blue_bg"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="4dp"
+            android:paddingStart="55dp"
+            android:singleLine="true"
+            android:textColorHint="@color/grey" />
+
+    </android.support.v7.widget.CardView>
 
     <Button
         android:id="@+id/Login"
@@ -82,46 +100,48 @@
         android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="64dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/login_grey_bg"
         android:gravity="center_vertical"
         android:text="LOGIN"
-        android:textColor="@color/lightblue"
         android:textAlignment="center"
+        android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/sign_up"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_password"
-        app:layout_constraintVertical_bias="0.126"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="64dp" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/sign_up"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/login_grey_bg"
         android:gravity="center_vertical"
         android:text="SIGN UP"
-        android:textColor="@color/lightblue"
         android:textAlignment="center"
+        android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/Login"
         app:layout_constraintTop_toBottomOf="@+id/login_password"
-        app:layout_constraintVertical_bias="0.126"
-        android:layout_marginRight="84dp" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/login_digital_india_logo"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="H,5:2"
         android:background="@drawable/digital_india"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,5 +149,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.932" />
+
+    <ImageView
+        android:id="@+id/user_name_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="@id/login_username"
+        app:layout_constraintEnd_toEndOf="@id/login_username"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/login_username"
+        app:layout_constraintTop_toTopOf="@id/login_username"
+        app:srcCompat="@drawable/ic_people_outline_black_48dp" />
+
+    <ImageView
+        android:elevation="10dp"
+        android:id="@+id/password_icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp"
+        app:layout_constraintBottom_toBottomOf="@id/login_password"
+        app:layout_constraintEnd_toEndOf="@id/login_password"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/login_password"
+        app:layout_constraintTop_toTopOf="@id/login_password"
+        app:srcCompat="@drawable/ic_lock_outline_black_48dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="150dp" />
 
 </android.support.constraint.ConstraintLayout>
