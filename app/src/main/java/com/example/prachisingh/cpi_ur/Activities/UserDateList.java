@@ -1,6 +1,8 @@
 package com.example.prachisingh.cpi_ur.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,7 +49,7 @@ public class UserDateList extends AppCompatActivity {
     Date date;
     int month;
     int year;
-
+    ProgressDialog progress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +89,9 @@ public class UserDateList extends AppCompatActivity {
     }
 
     private void getDates(int month,int year) {
+        progress=new ProgressDialog(this);
+        progress.setMessage("Fetching Schedule Dates");
+        progress.show();
         Log.i("month",String.valueOf(month));
         Log.i("year",String.valueOf(year));
         ApiInterface apiInterface= ApiClient.getAuthorizedApiInterface();
@@ -99,7 +104,13 @@ public class UserDateList extends AppCompatActivity {
                     map.putAll(response.body().getData());
                     datelist.addAll(map.keySet());
                  //   shopsTOVisit.addAll(map.get(datelist.get(i)));
-                    adapter.notifyDataSetChanged();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progress.cancel();//to delay progressbar
+                            adapter.notifyDataSetChanged();
+                        }
+                    },800);
                 }
             }
 
