@@ -4,18 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/signin_bg"
     tools:context="com.example.prachisingh.cpi_ur.Activities.LoginActivity">
+
+    <ImageView
+        android:id="@+id/login_app_logo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/app_logo"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.072" />
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="CPIAPP"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.297" />
 
     <EditText
         android:id="@+id/login_username"
-        android:hint="Username"
-
         android:layout_width="@dimen/view_width"
         android:layout_height="@dimen/view_height"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="200dp"
         android:background="@drawable/light_blue_bg"
+        android:hint="Username"
         android:padding="4dp"
         android:singleLine="true"
         android:textAlignment="center"
@@ -50,9 +84,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/light_blue_bg"
+        android:background="@drawable/login_grey_bg"
         android:gravity="center_vertical"
         android:text="LOGIN"
+        android:textColor="@color/lightblue"
         android:textAlignment="center"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,9 +106,10 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="84dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/light_blue_bg"
+        android:background="@drawable/login_grey_bg"
         android:gravity="center_vertical"
         android:text="SIGN UP"
+        android:textColor="@color/lightblue"
         android:textAlignment="center"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,5 +117,17 @@
         app:layout_constraintTop_toBottomOf="@+id/login_password"
         app:layout_constraintVertical_bias="0.126"
         android:layout_marginRight="84dp" />
+
+    <ImageView
+        android:id="@+id/login_digital_india_logo"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:background="@drawable/digital_india"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.932" />
 
 </android.support.constraint.ConstraintLayout>

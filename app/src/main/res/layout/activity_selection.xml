@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#10000000"
     tools:context="com.example.prachisingh.cpi_ur.Activities.SelectionActivity">
 
     <TextView
@@ -14,7 +15,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/light_blue_bg"
+        android:background="@drawable/login_grey_bg"
         android:gravity="center_vertical"
         android:text="MARKET SURVEY"
         android:textAlignment="center"
@@ -32,7 +33,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="116dp"
-        android:background="@drawable/light_blue_bg"
+        android:background="@drawable/login_grey_bg"
         android:gravity="center_vertical"
         android:text="PRICE COLLECTION"
         android:textAlignment="center"

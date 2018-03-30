@@ -1,7 +1,10 @@
 package com.example.prachisingh.cpi_ur.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     int userId;
     double latitude;
     double longitude;
+    ProgressDialog progressDialog;
    // String userNameString;
 
 
@@ -65,8 +69,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
+                progressDialog = new ProgressDialog(LoginActivity.this);
+                progressDialog.setMessage("loging in");
+                progressDialog.show();
                 signIn();
 
             }
@@ -91,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                     i.putExtra("user_id",response.body().getData().getUser().getId());
                     i.putExtra("user_lat",latitude);
                     i.putExtra("user_lon",longitude);
+                    progressDialog.cancel();
                     startActivity(i);
                     Log.i(tag,response.body().getMessage());
                 }

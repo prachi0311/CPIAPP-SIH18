@@ -3,6 +3,9 @@ package com.example.prachisingh.cpi_ur.Activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.telecom.Call;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.prachisingh.cpi_ur.Adapters.DateListAdapter;
 import com.example.prachisingh.cpi_ur.ApiResponses.ShopListOfDay;
 import com.example.prachisingh.cpi_ur.ApiResponses.userDatesResponse;
 import com.example.prachisingh.cpi_ur.Network.ApiClient;
@@ -30,9 +34,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserDateList extends AppCompatActivity {
-    @BindView(R.id.dateListView)
-    ListView datesListView;
-    ArrayAdapter<String> adapter;
+    @BindView(R.id.dateRecyclerView)
+    RecyclerView recyclerView;
+    DateListAdapter adapter;
     ArrayList<String> datelist;
     ArrayList<ShopListOfDay> shopsTOVisit;
     HashMap<String,ArrayList<ShopListOfDay>> map;
@@ -55,19 +59,22 @@ public class UserDateList extends AppCompatActivity {
         Log.i("access_token",accessToken);
         datelist=new ArrayList<>() ;
         map=new HashMap<>();
-        adapter=new ArrayAdapter<String>(UserDateList.this,android.R.layout.simple_list_item_1,datelist);
-        datesListView.setAdapter(adapter);
-        datesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(UserDateList.this,ScheduleActivity.class);
-                intent.putExtra("selected_date",datelist.get(i));
-                Bundle args = new Bundle();
-                args.putSerializable("shops_of_day",map.get(datelist.get(i)));
-                intent.putExtra("BUNDLE",args);
-                startActivity(intent);
-            }
-        });
+        adapter=new DateListAdapter(UserDateList.this,datelist,shopsTOVisit,map);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+//        datesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent intent=new Intent(UserDateList.this,ScheduleActivity.class);
+//                intent.putExtra("selected_date",datelist.get(i));
+//                Bundle args = new Bundle();
+//                args.putSerializable("shops_of_day",map.get(datelist.get(i)));
+//                intent.putExtra("BUNDLE",args);
+//                startActivity(intent);
+//            }
+//        });
         getDates(month,year);
 
 
