@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.prachisingh.cpi_ur.Activities.ItemListActivity;
 import com.example.prachisingh.cpi_ur.ApiResponses.ShopListOfDay;
 import com.example.prachisingh.cpi_ur.ApiResponses.ShopScheduleData;
 import com.example.prachisingh.cpi_ur.R;
@@ -48,11 +49,10 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopLi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i=new Intent(mcontext,ItemListActivity.class);
-//                i.putExtra("shop_id",mshopList.get(position).getId());
-//                i.putExtra("selected_date",mSelectedDate);
-//                mcontext.startActivity(i);
-//
+                Intent i=new Intent(mcontext,ItemListActivity.class);
+                i.putExtra("shop_id",mshopList.get(position).getId());
+                i.putExtra("selected_date",mSelectedDate);
+                mcontext.startActivity(i);
             }
         });
 

@@ -63,7 +63,7 @@ public class UserDateList extends AppCompatActivity {
                 Intent intent=new Intent(UserDateList.this,ScheduleActivity.class);
                 intent.putExtra("selected_date",datelist.get(i));
                 Bundle args = new Bundle();
-                args.putSerializable("shops_of_day",(Serializable)map.get(datelist.get(i)));
+                args.putSerializable("shops_of_day",map.get(datelist.get(i)));
                 intent.putExtra("BUNDLE",args);
                 startActivity(intent);
             }

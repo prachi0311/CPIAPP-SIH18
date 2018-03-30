@@ -4,82 +4,124 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.GridView;
+import android.widget.Toast;
 
 import com.example.prachisingh.cpi_ur.Adapters.ItemListAdapter;
-import com.example.prachisingh.cpi_ur.ApiResponses.ScheduleResponse;
+import com.example.prachisingh.cpi_ur.ApiResponses.ItemResponse;
 import com.example.prachisingh.cpi_ur.Network.ApiClient;
 import com.example.prachisingh.cpi_ur.R;
-import com.example.prachisingh.cpi_ur.Utils;
 import com.example.prachisingh.cpi_ur.models.Item;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ItemListActivity extends AppCompatActivity {
+import static java.util.Calendar.LONG;
+
+public class ItemListActivity extends AppCompatActivity implements ItemListAdapter.OnItemClickListener {
+    private final String TAG = getClass().getSimpleName();
     private ArrayList<Item> mItemList;
-    private ListView mListView;
+    private GridView mGridView;
     private ItemListAdapter mAdapter;
+    private int mShopId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
+        mShopId = getIntent().getExtras().getInt("shop_id");
         mItemList = new ArrayList<>();
-        mListView = findViewById(R.id.recycler_view);
-        mAdapter = new ItemListAdapter(this, mItemList);
-        mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                showDialogueForItem(i);
-            }
-        });
-      //  getShopList();
+        mGridView = findViewById(R.id.grid);
+        mAdapter = new ItemListAdapter(this, mItemList, this);
+        mGridView.setAdapter(mAdapter);
+        getShopList();
 
     }
 
-    private void showDialogueForItem(int position) {
+    private void showDialogueForItem(final int position) {
         Item item = mItemList.get(position);
+        final int itemId = item.getItemId();
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_price_update, null);
+        final EditText priceEditText = dialogView.findViewById(R.id.dialog_price_view);
+        if (item.getPrice() != 0)
+                priceEditText.setText(item.getPrice().toString());
         new AlertDialog.Builder(this)
-                .setTitle("")
-                .setPositiveButton("DONE", new DialogInterface.OnClickListener() {
+                .setTitle(item.getName())
+                .setPositiveButton("UPDATE PRICE", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        float price = Float.parseFloat(priceEditText.getText().toString());
+                        if (price != 0){
+                            // update item price
+                            updatePrice(position, price);
 
+                        }
                     }
                 })
-                // set post request for data updation
-                .setView(new EditText(this))
+                .setView(dialogView)
                 .create()
                 .show();
+        priceEditText.requestFocusFromTouch();
     }
 
-//    private void getShopList() {
-//        Calendar calendar = Calendar.getInstance();
-//        String date = new SimpleDateFormat("E, dd MMM yyyy").format(calendar);
-//        ApiClient.getAuthorizedApiInterface().getSchedule(Utils.getUserId(), date).enqueue(new Callback<ScheduleResponse>() {
-//            @Override
-//            public void onResponse(Call<ScheduleResponse> call, Response<ScheduleResponse> response) {
-//                if (response.isSuccessful()){
-//                    // populate list
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ScheduleResponse> call, Throwable t) {
-//
-//            }
-//        });
-//    }
+    private void updatePrice(final int position,final float price) {
+        ApiClient.getAuthorizedApiInterface().updatePrice("fc05a4758b5ad958f0a3bf55e470dbea"
+                , mItemList.get(position).getItemId()
+                , price
+                , /*Calendar.getInstance().getDisplayName(
+                        Calendar.MONTH
+                        , LONG
+                        , getResources().getConfiguration().locale)*/
+                "April"
+        ).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.i(TAG, "Update Price Response Code: " + response.code());
+                if (response.isSuccessful()){
+                    mItemList.get(position).setPrice(price);
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.i(TAG, "UpdatePrice Retrofit Failure");
+            }
+        });
+    }
+
+    private void getShopList() {
+        ApiClient.getAuthorizedApiInterface().getItemsForShop("fc05a4758b5ad958f0a3bf55e470dbea", mShopId).enqueue(new Callback<ItemResponse>() {
+            @Override
+            public void onResponse(Call<ItemResponse> call, Response<ItemResponse> response) {
+                Log.i(TAG, "ShopList Response Code: " + response.code());
+                if (response.isSuccessful()) {
+                    // populate list
+                    mItemList.addAll(response.body().getData().getItems());
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ItemResponse> call, Throwable t) {
+                Log.i(TAG, "ShopList Response Failure");
+            }
+        });
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        showDialogueForItem(position);
+    }
 }
