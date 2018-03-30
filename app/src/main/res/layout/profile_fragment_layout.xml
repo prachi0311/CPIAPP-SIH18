@@ -36,6 +36,8 @@
         app:layout_constraintTop_toBottomOf="@+id/user_image" />
 
    <TextView
+       android:gravity="center"
+       android:text="KLE Technological University"
        android:background="@drawable/white_rectangle_bg"
         android:id="@+id/profile_address"
        android:padding="5dp"
