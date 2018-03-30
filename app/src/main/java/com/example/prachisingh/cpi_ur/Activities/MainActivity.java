@@ -11,12 +11,26 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.example.prachisingh.cpi_ur.ApiResponses.OfflineSyncResponse;
+import com.example.prachisingh.cpi_ur.ApiResponses.SyncItem;
+import com.example.prachisingh.cpi_ur.ApiResponses.SyncMarkets;
+import com.example.prachisingh.cpi_ur.ApiResponses.SyncShops;
 import com.example.prachisingh.cpi_ur.Fragments.ProfileFragment;
 import com.example.prachisingh.cpi_ur.Fragments.WorkFragment;
+import com.example.prachisingh.cpi_ur.Network.ApiClient;
+import com.example.prachisingh.cpi_ur.Network.ApiInterface;
 import com.example.prachisingh.cpi_ur.R;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class MainActivity extends AppCompatActivity {
+    ArrayList<SyncItem> items;
+    ArrayList<SyncMarkets> markets;
+    ArrayList<SyncShops> shops;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -41,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        items=new ArrayList<>();
+        markets=new ArrayList<>();
+        shops=new ArrayList<>();
         //  mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -53,6 +69,31 @@ public class MainActivity extends AppCompatActivity {
         //Log.i("fcm_key",FirebaseInstanceId.getInstance().getToken());
         mViewPager.setCurrentItem(1,true);
         navigation.setSelectedItemId(R.id.navigation_home);
+       // updateofflinedb();
+
+    }
+
+    private void updateofflinedb() {
+
+        ApiInterface apiInterface= ApiClient.getAuthorizedApiInterface();
+        Call<OfflineSyncResponse> call=apiInterface.getofflineData();
+        call.enqueue(new Callback<OfflineSyncResponse>() {
+            @Override
+            public void onResponse(Call<OfflineSyncResponse> call, Response<OfflineSyncResponse> response) {
+                if(response.isSuccessful()){
+                    items.addAll(response.body().getData().getItems());
+                    markets.addAll(response.body().getData().getMarkets());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OfflineSyncResponse> call, Throwable t) {
+
+            }
+        });
+
+
     }
 
     class SectionsPagerAdapter extends FragmentPagerAdapter {

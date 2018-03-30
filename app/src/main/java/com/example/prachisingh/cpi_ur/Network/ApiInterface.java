@@ -1,6 +1,7 @@
 package com.example.prachisingh.cpi_ur.Network;
 
 import com.example.prachisingh.cpi_ur.ApiResponses.ItemResponse;
+import com.example.prachisingh.cpi_ur.ApiResponses.OfflineSyncResponse;
 import com.example.prachisingh.cpi_ur.ApiResponses.SignInResponse;
 import com.example.prachisingh.cpi_ur.ApiResponses.SignUpResponse;
 import com.example.prachisingh.cpi_ur.ApiResponses.UserMarketResponse;
@@ -34,6 +35,10 @@ public interface ApiInterface {
 
     @GET("get-required-user-market")
     Call<UserMarketResponse> getuserMarket(@Query("user_id") int userId, @Query("token") String accessToken);
+
+    @GET("sync")
+    Call<OfflineSyncResponse> getofflineData();
+
 
 
 }
