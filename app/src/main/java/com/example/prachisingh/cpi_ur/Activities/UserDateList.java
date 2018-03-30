@@ -90,7 +90,7 @@ public class UserDateList extends AppCompatActivity {
             public void onResponse(retrofit2.Call<userDatesResponse> call, Response<userDatesResponse> response) {
                 Log.i("date",String.valueOf(response.code()));
                 if(response.isSuccessful()){
-                    map=response.body().getData();
+                    map.putAll(response.body().getData());
                     datelist.addAll(map.keySet());
                  //   shopsTOVisit.addAll(map.get(datelist.get(i)));
                     adapter.notifyDataSetChanged();
