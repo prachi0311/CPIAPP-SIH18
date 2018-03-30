@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -83,6 +84,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void signIn() {
         ApiInterface apiInterface= ApiClient.getAuthorizedApiInterface();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.setMessage("Assigning Markets");
+            }
+        }, 800);
         Call<SignInResponse> call=apiInterface.userSignIn(userName.getText().toString(),password.getText().toString());
         call.enqueue(new Callback<SignInResponse>() {
             @Override
@@ -97,14 +104,20 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putFloat("user_lat",response.body().getData().getUser().getLatitude());
                     editor.putFloat("user_lon",response.body().getData().getUser().getLongitude());
                     editor.commit();
-                    Intent i=new Intent(LoginActivity.this,MainActivity.class);
+                    final Intent i=new Intent(LoginActivity.this,MainActivity.class);
                     i.putExtra("access_token",acessToken);
                     i.putExtra("user_id",response.body().getData().getUser().getId());
                     i.putExtra("user_lat",latitude);
                     i.putExtra("user_lon",longitude);
-                    progressDialog.cancel();
-                    startActivity(i);
-                    finish();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialog.cancel();
+                            startActivity(i);
+                            finish();
+                        }
+                    }, 600);
+
                     Log.i(tag,response.body().getMessage());
                 }
             }
