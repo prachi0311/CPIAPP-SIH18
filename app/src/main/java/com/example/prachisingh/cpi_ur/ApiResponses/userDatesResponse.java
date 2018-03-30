@@ -1,11 +1,11 @@
 package com.example.prachisingh.cpi_ur.ApiResponses;
 
+import com.example.prachisingh.cpi_ur.models.Shop;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.SimpleTimeZone;
 
 /**
  * Created by prachisingh on 28/03/18.
@@ -13,7 +13,7 @@ import java.util.SimpleTimeZone;
 
 public class userDatesResponse {
     @SerializedName("data")
-    HashMap<String,ArrayList<ShopListOfDay>> data;
+    HashMap<String,ArrayList<Shop>> data;
     @SerializedName("message")
     @Expose
     public String message;
@@ -21,7 +21,7 @@ public class userDatesResponse {
     @Expose
     public int status;
 
-    public HashMap<String, ArrayList<ShopListOfDay>> getData() {
+    public HashMap<String, ArrayList<Shop>> getData() {
         return data;
     }
 

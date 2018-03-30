@@ -6,31 +6,21 @@ import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.telecom.Call;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.example.prachisingh.cpi_ur.Adapters.DateListAdapter;
-import com.example.prachisingh.cpi_ur.ApiResponses.ShopListOfDay;
+import com.example.prachisingh.cpi_ur.models.Shop;
 import com.example.prachisingh.cpi_ur.ApiResponses.userDatesResponse;
 import com.example.prachisingh.cpi_ur.Network.ApiClient;
 import com.example.prachisingh.cpi_ur.Network.ApiInterface;
 import com.example.prachisingh.cpi_ur.R;
-import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,8 +32,8 @@ public class UserDateList extends AppCompatActivity {
     RecyclerView recyclerView;
     DateListAdapter adapter;
     ArrayList<String> datelist;
-    ArrayList<ShopListOfDay> shopsTOVisit;
-    HashMap<String,ArrayList<ShopListOfDay>> map;
+    ArrayList<Shop> shopsTOVisit;
+    HashMap<String,ArrayList<Shop>> map;
     String username;
     String accessToken;
     Date date;

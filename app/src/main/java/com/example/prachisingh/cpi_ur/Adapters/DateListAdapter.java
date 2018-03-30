@@ -2,7 +2,6 @@ package com.example.prachisingh.cpi_ur.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,17 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.prachisingh.cpi_ur.Activities.ScheduleActivity;
-import com.example.prachisingh.cpi_ur.ApiResponses.ShopListOfDay;
+import com.example.prachisingh.cpi_ur.models.Shop;
 import com.example.prachisingh.cpi_ur.R;
 
-import org.w3c.dom.Text;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.zip.Inflater;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,9 +27,9 @@ import butterknife.ButterKnife;
 public class DateListAdapter extends RecyclerView.Adapter<DateListAdapter.DateListViewHolder> {
     Context mcontext;
     ArrayList<String> mdatelist;
-    ArrayList<ShopListOfDay> mshopsTOVisit;
-    HashMap<String,ArrayList<ShopListOfDay>> map;
-    public DateListAdapter(Context mcontext, ArrayList<String> mdatelist, ArrayList<ShopListOfDay> mshopsTOVisit,HashMap<String,ArrayList<ShopListOfDay>> vmap)
+    ArrayList<Shop> mshopsTOVisit;
+    HashMap<String,ArrayList<Shop>> map;
+    public DateListAdapter(Context mcontext, ArrayList<String> mdatelist, ArrayList<Shop> mshopsTOVisit, HashMap<String,ArrayList<Shop>> vmap)
     {
         this.mcontext = mcontext;
         this.mdatelist = mdatelist;

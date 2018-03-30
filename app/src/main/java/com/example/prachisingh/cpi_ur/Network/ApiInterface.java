@@ -1,8 +1,6 @@
 package com.example.prachisingh.cpi_ur.Network;
 
 import com.example.prachisingh.cpi_ur.ApiResponses.ItemResponse;
-import com.example.prachisingh.cpi_ur.ApiResponses.MarketResponseData;
-import com.example.prachisingh.cpi_ur.ApiResponses.ShopScheduleResponse;
 import com.example.prachisingh.cpi_ur.ApiResponses.SignInResponse;
 import com.example.prachisingh.cpi_ur.ApiResponses.SignUpResponse;
 import com.example.prachisingh.cpi_ur.ApiResponses.UserMarketResponse;

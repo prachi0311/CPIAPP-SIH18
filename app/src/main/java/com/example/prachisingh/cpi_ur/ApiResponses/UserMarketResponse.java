@@ -5,9 +5,9 @@ package com.example.prachisingh.cpi_ur.ApiResponses;
  */
 
 public class UserMarketResponse {
-    MarketResponseData data;
+    MarketResponse data;
 
-    public MarketResponseData getData() {
+    public MarketResponse getData() {
         return data;
     }
 }

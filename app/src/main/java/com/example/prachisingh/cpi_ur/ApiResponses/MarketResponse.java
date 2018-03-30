@@ -1,15 +1,17 @@
 package com.example.prachisingh.cpi_ur.ApiResponses;
 
+import com.example.prachisingh.cpi_ur.models.Market;
+
 import java.util.ArrayList;
 
 /**
  * Created by prachisingh on 29/03/18.
  */
 
-public class MarketResponseData {
-    ArrayList<MarketsList> markets;
+public class MarketResponse {
+    ArrayList<Market> markets;
 
-    public ArrayList<MarketsList> getMarkets() {
+    public ArrayList<Market> getMarkets() {
         return markets;
     }
 }

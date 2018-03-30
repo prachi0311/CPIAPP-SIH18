@@ -1,5 +1,6 @@
-package com.example.prachisingh.cpi_ur.ApiResponses;
+package com.example.prachisingh.cpi_ur.models;
 
+import com.activeandroid.annotation.Column;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -7,19 +8,24 @@ import com.google.gson.annotations.SerializedName;
  * Created by prachisingh on 29/03/18.
  */
 
-public class MarketsList {
+public class Market {
+    @Column(name="id")
     @SerializedName("id")
     @Expose
     public int id;
+    @Column(name="name")
     @SerializedName("name")
     @Expose
     public String name;
+    @Column(name="latitude")
     @SerializedName("latitude")
     @Expose
     public float latitude;
+    @Column(name="longitude")
     @SerializedName("longitude")
     @Expose
     public float longitude;
+    @Column(name="user_id")
     @SerializedName("user_id")
     @Expose
     public int userId;
@@ -56,5 +62,17 @@ public class MarketsList {
 
     public String getUpdatedAt() {
         return updatedAt;
+    }
+
+    public Market(){
+        super();
+    }
+
+    public Market(int id, String name, float latitude, float longitude, int userId) {
+        this.id = id;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.userId = userId;
     }
 }

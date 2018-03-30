@@ -1,43 +1,27 @@
 package com.example.prachisingh.cpi_ur.Activities;
 
-import android.Manifest;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.telecom.Call;
 import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.prachisingh.cpi_ur.Adapters.ShopListAdapter;
-import com.example.prachisingh.cpi_ur.ApiResponses.ShopListOfDay;
-import com.example.prachisingh.cpi_ur.ApiResponses.ShopScheduleData;
-import com.example.prachisingh.cpi_ur.ApiResponses.ShopScheduleResponse;
-import com.example.prachisingh.cpi_ur.Network.ApiClient;
-import com.example.prachisingh.cpi_ur.Network.ApiInterface;
+import com.example.prachisingh.cpi_ur.models.Shop;
 import com.example.prachisingh.cpi_ur.R;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ScheduleActivity extends AppCompatActivity {
     @BindView(R.id.shop_list_recyclerview)
@@ -47,7 +31,7 @@ public class ScheduleActivity extends AppCompatActivity {
     Intent i;
     String accessToken;
     String selectedDate;
-    ArrayList<ShopListOfDay> shopList;
+    ArrayList<Shop> shopList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +45,7 @@ public class ScheduleActivity extends AppCompatActivity {
         addresses=new ArrayList<>();
         i=getIntent();
         Bundle args = i.getBundleExtra("BUNDLE");
-        shopList = (ArrayList<ShopListOfDay>) args.getSerializable("shops_of_day");
+        shopList = (ArrayList<Shop>) args.getSerializable("shops_of_day");
         Log.i("shoplistsize",String.valueOf(shopList.size()));
         accessToken=i.getStringExtra("access_token");
         selectedDate=i.getStringExtra("selected_date");
