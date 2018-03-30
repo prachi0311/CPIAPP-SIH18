@@ -1,6 +1,7 @@
 package com.example.prachisingh.cpi_ur.Fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,8 +9,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.prachisingh.cpi_ur.Activities.LoginActivity;
 import com.example.prachisingh.cpi_ur.R;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -20,23 +23,42 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by prachisingh on 28/03/18.
  */
 
 public class ProfileFragment extends Fragment {
+    Button logout;
     TextView userAdress;
-   double userLatitude;
-   double userLongitude;
+   float userLatitude;
+   float userLongitude;
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.profile_fragment_layout,container,false);
+        sp=getActivity().getSharedPreferences("CPI",MODE_PRIVATE);
+        editor=sp.edit();
         userAdress=(TextView) view.findViewById(R.id.profile_address);
+        logout=(Button)view.findViewById(R.id.logout_button);
         Intent i=getActivity().getIntent();
-       userLatitude=i.getDoubleExtra("user_lat",-1);
-       userLongitude=i.getDoubleExtra("user_lon",-1);
-       getAddress(userLatitude,userLongitude);
+       userLatitude=i.getFloatExtra("user_lat",-1);
+       userLongitude=i.getFloatExtra("user_lon",-1);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(getActivity(), LoginActivity.class);
+                editor.remove("access_token");
+                editor.commit();
+                startActivity(i);
+                getActivity().finish();
+            }
+        });
+       getAddress((double)userLatitude,(double)userLongitude);
         return view;
     }
 

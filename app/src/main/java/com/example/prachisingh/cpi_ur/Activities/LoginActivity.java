@@ -56,9 +56,9 @@ public class LoginActivity extends AppCompatActivity {
 //        if(sp.getString("access_token","")!=null){
 //            Intent i=new Intent(LoginActivity.this,MainActivity.class);
 //            i.putExtra("access_token",sp.getString("access_token",null));
-//            i.putExtra("user_id",userId);
-//            i.putExtra("user_lat",latitude);
-//            i.putExtra("user_lon",longitude);
+//            i.putExtra("user_id",sp.getInt("user_id",-1));
+//            i.putExtra("user_lat",sp.getFloat("user_lat",-1));
+//            i.putExtra("user_lon",sp.getFloat("user_lon",-1));
 //            startActivity(i);
 //        }
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +93,9 @@ public class LoginActivity extends AppCompatActivity {
                     latitude=response.body().getData().getUser().getLatitude();
                     longitude=response.body().getData().getUser().getLongitude();
                     editor.putString("access_token",response.body().getData().getUser().getAccessToken());
+                    editor.putInt("user_id",response.body().getData().getUser().getId());
+                    editor.putFloat("user_lat",response.body().getData().getUser().getLatitude());
+                    editor.putFloat("user_lon",response.body().getData().getUser().getLongitude());
                     editor.commit();
                     Intent i=new Intent(LoginActivity.this,MainActivity.class);
                     i.putExtra("access_token",acessToken);
@@ -101,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                     i.putExtra("user_lon",longitude);
                     progressDialog.cancel();
                     startActivity(i);
+                    finish();
                     Log.i(tag,response.body().getMessage());
                 }
             }
