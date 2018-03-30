@@ -6,11 +6,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.prachisingh.cpi_ur.R;
 import com.example.prachisingh.cpi_ur.models.Item;
@@ -58,7 +55,7 @@ public class ItemListAdapter extends BaseAdapter {
 
         TextView mItemNameView = listItem.findViewById(R.id.item_name_view);
         mItemNameView.setText(currentItem.getName());
-        TextView mPriceView = listItem.findViewById(R.id.item_price_edit_text);
+        TextView mPriceView = listItem.findViewById(R.id.item_price_view);
         mPriceView.setText(currentItem.getPrice().toString());
         listItem.setOnClickListener(new ClickListener(position));
         return listItem;
