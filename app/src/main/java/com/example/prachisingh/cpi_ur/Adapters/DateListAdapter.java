@@ -17,7 +17,10 @@ import com.example.prachisingh.cpi_ur.R;
 
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.zip.Inflater;
 
@@ -51,6 +54,13 @@ public class DateListAdapter extends RecyclerView.Adapter<DateListAdapter.DateLi
     @Override
     public void onBindViewHolder(DateListAdapter.DateListViewHolder holder, final int position) {
         holder.Date.setText(mdatelist.get(position));
+        switch (position){
+            case 0 : holder.status.setImageResource(R.drawable.greenticksmall);
+                break;
+            case 1: holder.status.setImageResource(R.drawable.current_arrow);
+                break;
+            case 2 : holder.status.setImageResource(R.drawable.schedule_button);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

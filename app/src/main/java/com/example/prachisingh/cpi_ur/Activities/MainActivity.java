@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
@@ -50,9 +51,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.view_pager_main_activity);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         //Log.i("fcm_key",FirebaseInstanceId.getInstance().getToken());
-
-//        navigation.setupWithViewPager(mViewPager);
-//        navigation.setCurrentItem(2);
+        mViewPager.setCurrentItem(1,true);
     }
 
     class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -84,5 +83,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return true;
     }
 }

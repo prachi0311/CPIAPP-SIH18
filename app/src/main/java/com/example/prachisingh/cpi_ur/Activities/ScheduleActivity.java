@@ -9,6 +9,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -16,6 +17,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.telecom.Call;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.example.prachisingh.cpi_ur.Adapters.ShopListAdapter;
 import com.example.prachisingh.cpi_ur.ApiResponses.ShopListOfDay;
@@ -50,6 +52,9 @@ public class ScheduleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
+        ActionBar abar = getSupportActionBar();
+        abar.setDisplayHomeAsUpEnabled(true);
+        abar.setTitle("SHOP LIST");
         ButterKnife.bind(this);
      //   shopList=new ArrayList<>();
         addresses=new ArrayList<>();
@@ -117,5 +122,11 @@ public class ScheduleActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return null;
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return true;
     }
 }
