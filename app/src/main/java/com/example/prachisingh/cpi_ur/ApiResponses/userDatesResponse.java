@@ -12,7 +12,7 @@ import java.util.SimpleTimeZone;
  */
 
 public class userDatesResponse {
-
+    @SerializedName("data")
     HashMap<String,ArrayList<ShopListOfDay>> data;
     @SerializedName("message")
     @Expose

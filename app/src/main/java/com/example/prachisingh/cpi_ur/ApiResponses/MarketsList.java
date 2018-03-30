@@ -3,48 +3,51 @@ package com.example.prachisingh.cpi_ur.ApiResponses;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
 /**
  * Created by prachisingh on 29/03/18.
  */
 
-public class ShopListOfDay implements Serializable {
+public class MarketsList {
     @SerializedName("id")
     @Expose
     public int id;
+    @SerializedName("name")
+    @Expose
+    public String name;
     @SerializedName("latitude")
     @Expose
-    public double latitude;
+    public float latitude;
     @SerializedName("longitude")
     @Expose
-    public double longitude;
+    public float longitude;
+    @SerializedName("user_id")
+    @Expose
+    public int userId;
     @SerializedName("created_at")
     @Expose
     public String createdAt;
     @SerializedName("updated_at")
     @Expose
     public String updatedAt;
-    @SerializedName("name")
-    @Expose
-    public String name;
-    @SerializedName("market_id")
-    @Expose
-    public int marketId;
-    @SerializedName("schedule_day")
-    @Expose
-    public int scheduleDay;
 
     public int getId() {
         return id;
     }
 
-    public double getLatitude() {
+    public String getName() {
+        return name;
+    }
+
+    public float getLatitude() {
         return latitude;
     }
 
-    public double getLongitude() {
+    public float getLongitude() {
         return longitude;
+    }
+
+    public int getUserId() {
+        return userId;
     }
 
     public String getCreatedAt() {
@@ -53,17 +56,5 @@ public class ShopListOfDay implements Serializable {
 
     public String getUpdatedAt() {
         return updatedAt;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getMarketId() {
-        return marketId;
-    }
-
-    public int getScheduleDay() {
-        return scheduleDay;
     }
 }

@@ -1,9 +1,11 @@
 package com.example.prachisingh.cpi_ur.Network;
 
+import com.example.prachisingh.cpi_ur.ApiResponses.MarketResponseData;
 import com.example.prachisingh.cpi_ur.ApiResponses.ShopScheduleResponse;
 import com.example.prachisingh.cpi_ur.ApiResponses.ScheduleResponse;
 import com.example.prachisingh.cpi_ur.ApiResponses.SignInResponse;
 import com.example.prachisingh.cpi_ur.ApiResponses.SignUpResponse;
+import com.example.prachisingh.cpi_ur.ApiResponses.UserMarketResponse;
 import com.example.prachisingh.cpi_ur.ApiResponses.userDatesResponse;
 
 import retrofit2.Call;
@@ -31,6 +33,9 @@ public interface ApiInterface {
 
     @GET("schedule")
     Call<ScheduleResponse> getSchedule(@Query("userId") long userId, @Query("date") String date);
+
+    @GET("get-required-user-market")
+    Call<UserMarketResponse> getuserMarket(@Query("user_id") int userId, @Query("token") String accessToken);
 
 
 }

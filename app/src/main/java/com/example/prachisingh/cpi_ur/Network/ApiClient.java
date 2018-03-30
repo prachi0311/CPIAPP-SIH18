@@ -14,7 +14,7 @@ public class ApiClient {
     public static ApiInterface getAuthorizedApiInterface(){
         if(ApiInterface ==null){
 
-            Retrofit retrofit= new Retrofit.Builder().baseUrl("https://9095c2c2.ngrok.io/api/v1/")
+            Retrofit retrofit= new Retrofit.Builder().baseUrl("https:///sih-cpi.herokuapp.com/api/v1/")
                     .addConverterFactory(GsonConverterFactory.create()).build();
        ApiInterface =retrofit.create(ApiInterface.class);
         }

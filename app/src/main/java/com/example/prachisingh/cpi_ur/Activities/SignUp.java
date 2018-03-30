@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -28,7 +29,7 @@ public class SignUp extends AppCompatActivity {
     @BindView(R.id.signup_confirm_password)
     EditText confirmPassword;
     @BindView(R.id.signup)
-    TextView SignUpButton;
+    Button SignUpButton;
     String tag="sign Up";
 
     @Override

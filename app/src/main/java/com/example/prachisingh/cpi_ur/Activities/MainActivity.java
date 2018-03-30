@@ -9,9 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-import com.example.prachisingh.cpi_ur.Fragments.MapFragment;
 import com.example.prachisingh.cpi_ur.Fragments.ProfileFragment;
 import com.example.prachisingh.cpi_ur.Fragments.WorkFragment;
 import com.example.prachisingh.cpi_ur.R;
@@ -32,9 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     mViewPager.setCurrentItem(1, true);
                     return true;
-                case R.id.navigation_map:
-                    mViewPager.setCurrentItem(2, true);
-                    return true;
+
             }
             return false;
         }
@@ -75,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     return new ProfileFragment();
                 case 1:
                     return new WorkFragment();
-                case 2:
-                    return new MapFragment();
+
 
 
             }
@@ -85,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
 

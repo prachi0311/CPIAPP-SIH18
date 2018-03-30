@@ -109,7 +109,9 @@ public class ScheduleActivity extends AppCompatActivity {
             // Here 1 represent max location result to returned, by documents it recommended 1 to 5
             addresses = geocoder.getFromLocation(latitude,longitude, 1);
            // Log.i("address",String.valueOf(addresses.get(0)));
-            adress=addresses.get(0).toString().substring(24,addresses.get(0).toString().indexOf("India"));
+            if(addresses.size()!=0){
+            adress=addresses.get(0).toString().substring(24,addresses.get(0).toString().indexOf("India"));}
+            else adress="ADDRESS : NOT FOUND";
             return adress;
 
         } catch (IOException e) {

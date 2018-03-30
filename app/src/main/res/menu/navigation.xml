@@ -11,9 +11,6 @@
         android:icon="@drawable/ic_home_black_24dp"
         android:title="Home" />
 
-    <item
-        android:id="@+id/navigation_map"
-        android:icon="@android:drawable/ic_dialog_map"
-        android:title="Map" />
+
 
 </menu>
