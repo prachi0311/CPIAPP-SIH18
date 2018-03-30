@@ -1,7 +1,10 @@
 package com.example.prachisingh.cpi_ur.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +43,8 @@ public class ItemListActivity extends AppCompatActivity implements ItemListAdapt
     private ItemListAdapter mAdapter;
     private int mShopId;
 
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +56,11 @@ public class ItemListActivity extends AppCompatActivity implements ItemListAdapt
         mAdapter = new ItemListAdapter(this, mItemList, this);
         mGridView.setAdapter(mAdapter);
         getShopList();
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Fetching shop items...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
     }
 
@@ -117,7 +128,14 @@ public class ItemListActivity extends AppCompatActivity implements ItemListAdapt
                 if (response.isSuccessful()) {
                     // populate list
                     mItemList.addAll(response.body().getData().getItems());
-                    mAdapter.notifyDataSetChanged();
+                    // to delay progress bar
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialog.cancel();
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    }, 800);
                 }
             }
 
