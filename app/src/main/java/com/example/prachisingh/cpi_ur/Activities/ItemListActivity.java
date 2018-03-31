@@ -69,7 +69,7 @@ public class ItemListActivity extends AppCompatActivity implements ItemListAdapt
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         float price = Float.parseFloat(priceEditText.getText().toString());
-                        if (((Math.abs(item.getPrevMonthPrice() - price) / item.getPrevMonthPrice()) > (1 / 5))) {
+                        if (((Math.abs(item.getPrevMonthPrice() - price) / item.getPrevMonthPrice()) > 0.2)) {
                             new AlertDialog.Builder(ItemListActivity.this).setTitle("ALERT")
                                     .setPositiveButton("Add Remark", new DialogInterface.OnClickListener() {
                                         @Override
