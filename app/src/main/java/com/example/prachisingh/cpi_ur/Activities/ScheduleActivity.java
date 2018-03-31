@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.prachisingh.cpi_ur.Adapters.ShopListAdapter;
@@ -32,6 +33,8 @@ public class ScheduleActivity extends AppCompatActivity {
     String accessToken;
     String selectedDate;
     ArrayList<Shop> shopList;
+
+    public final static String SHOP_LIST_KEY = "shops";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +83,17 @@ public class ScheduleActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
+        }else if (item.getItemId() == R.id.map){
+            Intent intent = new Intent(this, MapsActivity.class);
+            intent.putExtra(SHOP_LIST_KEY, shopList);
+            startActivity(intent);
         }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.map_menu, menu);
         return true;
     }
 }

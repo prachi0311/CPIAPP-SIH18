@@ -1,40 +1,29 @@
 package com.example.prachisingh.cpi_ur.Activities;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.prachisingh.cpi_ur.Adapters.ItemListAdapter;
 import com.example.prachisingh.cpi_ur.ApiResponses.ItemResponse;
-import com.example.prachisingh.cpi_ur.Fragments.ItemDialogFragment;
 import com.example.prachisingh.cpi_ur.Network.ApiClient;
 import com.example.prachisingh.cpi_ur.R;
 import com.example.prachisingh.cpi_ur.models.Item;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static java.util.Calendar.LONG;
 
 public class ItemListActivity extends AppCompatActivity implements ItemListAdapter.OnItemClickListener {
     private final String TAG = getClass().getSimpleName();
@@ -65,25 +54,37 @@ public class ItemListActivity extends AppCompatActivity implements ItemListAdapt
     }
 
     private void showDialogueForItem(final int position) {
-        Item item = mItemList.get(position);
+        final Item item = mItemList.get(position);
         final int itemId = item.getItemId();
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_price_update, null);
+        final View alertView = LayoutInflater.from(this).inflate(R.layout.alert_dialog, null);
         final EditText priceEditText = dialogView.findViewById(R.id.dialog_price_view);
         TextView prevMonthPriceView = dialogView.findViewById(R.id.prev_month_price_view);
-        prevMonthPriceView.setText(item.getPrevMonthPrice()+"");
+        prevMonthPriceView.setText(item.getPrevMonthPrice() + "");
         if (item.getPrice() != 0)
-                priceEditText.setText(item.getPrice().toString());
+            priceEditText.setText(item.getPrice().toString());
         new AlertDialog.Builder(this)
                 .setTitle(item.getName())
                 .setPositiveButton("UPDATE PRICE", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         float price = Float.parseFloat(priceEditText.getText().toString());
-                        if (price != 0){
-                            // update item price
-                            updatePrice(position, price);
+                        if (((Math.abs(item.getPrevMonthPrice() - price) / item.getPrevMonthPrice()) > (1 / 5))) {
+                            new AlertDialog.Builder(ItemListActivity.this).setTitle("ALERT")
+                                    .setPositiveButton("Add Remark", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            // send remark to api
+                                        }
+                                    })
+                                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
 
+                                        }
+                                    }).setView(alertView).create().show();
                         }
+                        updatePrice(position, price);
                     }
                 })
                 .setView(dialogView)
@@ -94,7 +95,7 @@ public class ItemListActivity extends AppCompatActivity implements ItemListAdapt
 //        dialogFragment.setArguments();
     }
 
-    private void updatePrice(final int position,final float price) {
+    private void updatePrice(final int position, final float price) {
         ApiClient.getAuthorizedApiInterface().updatePrice("fc05a4758b5ad958f0a3bf55e470dbea"
                 , mItemList.get(position).getItemId()
                 , price
@@ -107,7 +108,7 @@ public class ItemListActivity extends AppCompatActivity implements ItemListAdapt
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Log.i(TAG, "Update Price Response Code: " + response.code());
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     mItemList.get(position).setPrice(price);
                     mAdapter.notifyDataSetChanged();
                 }

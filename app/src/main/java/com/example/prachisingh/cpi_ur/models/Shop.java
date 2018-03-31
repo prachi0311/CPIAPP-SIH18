@@ -1,6 +1,6 @@
 package com.example.prachisingh.cpi_ur.models;
 
-import com.activeandroid.annotation.Column;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -11,15 +11,12 @@ import java.io.Serializable;
  */
 
 public class Shop implements Serializable {
-    @Column(name="id")
     @SerializedName("id")
     @Expose
     public int id;
-    @Column(name = "latitude")
     @SerializedName("latitude")
     @Expose
     public double latitude;
-    @Column(name="longitude")
     @SerializedName("longitude")
     @Expose
     public double longitude;
@@ -29,15 +26,12 @@ public class Shop implements Serializable {
     @SerializedName("updated_at")
     @Expose
     public String updatedAt;
-    @Column(name="name")
     @SerializedName("name")
     @Expose
     public String name;
-    @Column(name="market_id")
     @SerializedName("market_id")
     @Expose
     public int marketId;
-    @Column(name="schedule_day")
     @SerializedName("schedule_day")
     @Expose
     public int scheduleDay;
@@ -74,16 +68,7 @@ public class Shop implements Serializable {
         return scheduleDay;
     }
 
-    public Shop(){
-        super();
-    }
-
-    public Shop(int id, double latitude, double longitude, String name, int marketId, int scheduleDay) {
-        this.id = id;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.name = name;
-        this.marketId = marketId;
-        this.scheduleDay = scheduleDay;
+    public LatLng getLatLng(){
+        return new LatLng(latitude, longitude);
     }
 }
