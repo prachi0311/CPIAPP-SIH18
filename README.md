@@ -9,6 +9,6 @@ This application is developed on Java for android devices. The goal of the appli
 **3. Choose between two options**
 - **Price Collection**
     -- This option will show the logged in officer's schedule and will display it following the Material Design paradigms.
-- Market Survey
+- **Market Survey**
     -- The market survey is to be used for the pre collection period to decide the the quanitties of an item.
     
