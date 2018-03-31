@@ -29,6 +29,7 @@ public class ConnectivityReceiver
                 && activeNetwork.isConnectedOrConnecting();
 
         mContext = context;
+        Utils.setConnected(isConnected);
         if (isConnected){
             // check for queue
         }
