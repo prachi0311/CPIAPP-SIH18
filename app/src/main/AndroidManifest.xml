@@ -19,7 +19,7 @@
         <!--ActiveAndroid metadata-->
         <meta-data android:name="AA_DB_NAME" android:value="cpiapp" />
         <meta-data android:name="AA_DB_VERSION" android:value="1" />
-        <activity android:name=".Activities.LoginActivity"
+        <activity android:name=".activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,12 +27,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.SignUp" />
-        <activity android:name=".Activities.ScheduleActivity" />
-        <activity android:name=".Activities.ItemListActivity"></activity>
-        <activity android:name=".Activities.UserDateList" />
-        <activity android:name=".Activities.SelectionActivity"/>
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".activities.SignUp" />
+        <activity android:name=".activities.ScheduleActivity" />
+        <activity android:name=".activities.ItemListActivity"></activity>
+        <activity android:name=".activities.UserDateList" />
+        <activity android:name=".activities.SelectionActivity"/>
+        <activity android:name=".activities.MainActivity">
 
         </activity>
 
@@ -40,6 +40,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".Activities.MapsActivity"/>
+        <activity android:name=".activities.MapsActivity"/>
     </application>
 </manifest>

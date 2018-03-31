@@ -9,5 +9,5 @@
     android:columnWidth="100dp"
     android:numColumns="auto_fit"
     android:stretchMode="columnWidth"
-    tools:context="com.example.prachisingh.cpi_ur.Activities.ItemListActivity"
+    tools:context="com.example.prachisingh.cpi_ur.activities.ItemListActivity"
     tools:listitem="@layout/item_shop_item" />

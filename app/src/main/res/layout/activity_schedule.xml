@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/greyBackground"
-    tools:context="com.example.prachisingh.cpi_ur.Activities.ScheduleActivity">
+    tools:context="com.example.prachisingh.cpi_ur.activities.ScheduleActivity">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/shop_list_recyclerview"
         android:layout_width="match_parent"
