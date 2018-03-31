@@ -2,10 +2,12 @@ package com.example.prachisingh.cpi_ur.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.prachisingh.cpi_ur.Activities.ItemListActivity;
@@ -55,6 +57,14 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopLi
                 mcontext.startActivity(i);
             }
         });
+        holder.callIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:0123456789"));
+                mcontext.startActivity(intent);
+            }
+        });
 
     }
 
@@ -68,9 +78,12 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopLi
         TextView shopName;
         @BindView(R.id.shop_adress)
         TextView shopAddress;
+        @BindView(R.id.call_icon)
+        ImageView callIcon;
         public ShopListViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+
         }
     }
 }
