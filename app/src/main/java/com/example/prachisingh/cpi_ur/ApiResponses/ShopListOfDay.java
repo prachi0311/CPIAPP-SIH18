@@ -1,5 +1,6 @@
 package com.example.prachisingh.cpi_ur.ApiResponses;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -65,5 +66,9 @@ public class ShopListOfDay implements Serializable {
 
     public int getScheduleDay() {
         return scheduleDay;
+    }
+
+    public LatLng getLatLng(){
+        return new LatLng(latitude, longitude);
     }
 }
