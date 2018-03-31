@@ -1,8 +1,10 @@
 package com.example.prachisingh.cpi_ur.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +13,15 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.prachisingh.cpi_ur.adapters.ShopListAdapter;
 import com.example.prachisingh.cpi_ur.models.Shop;
 import com.example.prachisingh.cpi_ur.R;
+import com.example.prachisingh.cpi_ur.recievers.ConnectivityReceiver;
+import com.example.prachisingh.cpi_ur.utils.MyApplication;
+import com.example.prachisingh.cpi_ur.utils.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,8 +63,33 @@ public class ScheduleActivity extends AppCompatActivity {
                         addresses.add(i, String.valueOf(getAddress(shopList.get(i).getLatitude(), shopList.get(i).getLongitude())));
                     }
         adapter=new ShopListAdapter(ScheduleActivity.this,shopList,addresses,selectedDate);
+        if (!Utils.isConnected())
+            Snackbar.make(recyclerView, "OFFLINE MODE", Snackbar.LENGTH_INDEFINITE).show();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        MyApplication.getInstance().setConnectivityListener(new ConnectivityReceiver.ConnectivityReceiverListener() {
+            @Override
+            public void onNetworkConnectionChanged(boolean isConnected) {
+                String message;
+                int color;
+                int duration;
+                if (isConnected) {
+                    message = "ONLINE";
+                    color = Color.WHITE;
+                    duration = Snackbar.LENGTH_SHORT;
+                } else {
+                    message = "OFFLINE MODE";
+                    color = Color.RED;
+                    duration = Snackbar.LENGTH_INDEFINITE;
+                }
+                Snackbar snackbar = Snackbar
+                        .make(recyclerView, message, duration);
+                View sbView = snackbar.getView();
+                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                textView.setTextColor(color);
+                snackbar.show();
+            }
+        });
     }
 
     public String  getAddress(double latitude, double longitude)

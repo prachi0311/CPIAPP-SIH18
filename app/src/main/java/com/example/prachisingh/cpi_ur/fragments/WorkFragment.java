@@ -3,6 +3,7 @@ package com.example.prachisingh.cpi_ur.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.prachisingh.cpi_ur.activities.UserDateList;
 import com.example.prachisingh.cpi_ur.R;
+import com.example.prachisingh.cpi_ur.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +43,8 @@ public class WorkFragment extends ProfileFragment {
                 startActivity(i);
             }
         });
+        if (!Utils.isConnected())
+            Snackbar.make(container, "OFFLINE MODE", Snackbar.LENGTH_INDEFINITE).show();
         return view;
     }
 }

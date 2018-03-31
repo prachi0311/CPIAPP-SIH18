@@ -1,26 +1,33 @@
 package com.example.prachisingh.cpi_ur.models;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+import com.example.prachisingh.cpi_ur.room.CPIContract;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by YourFather on 28-03-2018.
  */
-
+@Entity(tableName = CPIContract.ItemContract.TABLE_NAME)
 public class Item {
+    @PrimaryKey
     @SerializedName("id")
     @Expose
-    private Integer itemId;
+    @ColumnInfo(name = CPIContract.ItemContract.ID_COLUMN_NAME)
+    public Integer itemId;
     @SerializedName("name")
     @Expose
-    private String name;
+    public String name;
     @SerializedName("item_code")
     @Expose
-    private String itemCode;
-    private float price;
+    public String itemCode;
+    public float price;
     @SerializedName("previous_month_price")
     @Expose
-    private float prevMonthPrice;
+    public float prevMonthPrice;
 
     public Integer getItemId() {
         return itemId;

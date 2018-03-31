@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by prachisingh on 29/03/18.
+ * Created by prachisingh on r29/03/18.
  */
 
 public class Market {

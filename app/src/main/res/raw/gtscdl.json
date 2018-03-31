@@ -1,0 +1,95 @@
+{
+    "data": {
+        "01 April,2018": [
+            {
+                "id": 33,
+                "latitude": null,
+                "longitude": null,
+                "created_at": "2018-03-30T11:54:18.480Z",
+                "updated_at": "2018-03-30T11:54:18.480Z",
+                "name": "shop6",
+                "market_id": 13,
+                "schedule_day": 1
+            },
+            {
+                "id": 34,
+                "latitude": null,
+                "longitude": null,
+                "created_at": "2018-03-30T11:54:18.485Z",
+                "updated_at": "2018-03-30T11:54:18.485Z",
+                "name": "shop7",
+                "market_id": 13,
+                "schedule_day": 1
+            },
+            {
+                "id": 28,
+                "latitude": 15.36888,
+                "longitude": 75.1214,
+                "created_at": "2018-03-30T11:54:18.452Z",
+                "updated_at": "2018-03-30T21:31:35.551Z",
+                "name": "BVB shop",
+                "market_id": 13,
+                "schedule_day": 1
+            },
+            {
+                "id": 32,
+                "latitude": 14.51,
+                "longitude": 78.4,
+                "created_at": "2018-03-30T11:54:18.472Z",
+                "updated_at": "2018-03-30T21:36:49.642Z",
+                "name": "Samvasivam store",
+                "market_id": 13,
+                "schedule_day": 1
+            }
+        ],
+        "02 April,2018": [
+            {
+                "id": 35,
+                "latitude": null,
+                "longitude": null,
+                "created_at": "2018-03-30T11:54:18.490Z",
+                "updated_at": "2018-03-30T11:54:18.490Z",
+                "name": "shop8",
+                "market_id": 14,
+                "schedule_day": 2
+            },
+            {
+                "id": 36,
+                "latitude": null,
+                "longitude": null,
+                "created_at": "2018-03-30T11:54:18.495Z",
+                "updated_at": "2018-03-30T11:54:18.495Z",
+                "name": "shop9",
+                "market_id": 14,
+                "schedule_day": 2
+            },
+            {
+                "id": 29,
+                "latitude": 15.66,
+                "longitude": 77.68,
+                "created_at": "2018-03-30T11:54:18.458Z",
+                "updated_at": "2018-03-30T21:43:41.611Z",
+                "name": "Devaram stores",
+                "market_id": 14,
+                "schedule_day": 2
+            }
+        ],
+        "03 April,2018": [
+            {
+                "id": 30,
+                "latitude": 13.51,
+                "longitude": 78.31,
+                "created_at": "2018-03-30T11:54:18.462Z",
+                "updated_at": "2018-03-30T21:34:46.062Z",
+                "name": "Murugan Stores",
+                "market_id": 15,
+                "schedule_day": 3
+            }
+        ]
+    },
+    "message": "Entire schedule",
+    "status": 200,
+    "error": null,
+    "disabled": false,
+    "update": false
+}

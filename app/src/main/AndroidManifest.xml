@@ -6,8 +6,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".utils.MyApplication"
         android:hardwareAccelerated="false"
         android:largeHeap="true"
         android:allowBackup="true"
@@ -41,5 +43,12 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".activities.MapsActivity"/>
+        <receiver
+            android:name=".recievers.ConnectivityReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

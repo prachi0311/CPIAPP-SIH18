@@ -1,0 +1,53 @@
+{
+    "data": {
+        "items": [
+            {
+                "id": 59,
+                "name": "Suji",
+                "item_code": "1.7.05.2.1.01.0",
+                "category_id": null,
+                "group_id": null,
+                "sub_group_id": null,
+                "section_id": null,
+                "goods_services": null,
+                "weighted_item_id": null,
+                "varierty": null,
+                "created_at": "2018-03-30T11:54:18.680Z",
+                "updated_at": "2018-03-30T11:54:18.680Z",
+                "market_id": 13,
+                "original_shop_id": 34,
+                "first_reserve_shop_id": 32,
+                "second_reserve_shop_id": 33,
+                "open_shop_id": null,
+                "price": 10,
+                "previous_month_price": 45.2
+            },
+            {
+                "id": 60,
+                "name": "Mango",
+                "item_code": "1.1.05.2.1.01.0",
+                "category_id": null,
+                "group_id": null,
+                "sub_group_id": null,
+                "section_id": null,
+                "goods_services": null,
+                "weighted_item_id": null,
+                "varierty": null,
+                "created_at": "2018-03-30T11:54:18.685Z",
+                "updated_at": "2018-03-30T11:54:18.685Z",
+                "market_id": 13,
+                "original_shop_id": 34,
+                "first_reserve_shop_id": 28,
+                "second_reserve_shop_id": 32,
+                "open_shop_id": null,
+                "price": 0,
+                "previous_month_price": 12.5
+            }
+        ]
+    },
+    "message": "Items",
+    "status": 200,
+    "error": null,
+    "disabled": false,
+    "update": false
+}

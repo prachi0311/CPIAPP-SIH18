@@ -22,4 +22,9 @@ public class ItemResponse {
             return items;
         }
     }
+
+    public ItemResponse(ArrayList<Item> items) {
+        this.data = new ItemData();
+        this.data.items = items;
+    }
 }

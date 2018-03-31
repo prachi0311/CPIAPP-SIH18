@@ -2,7 +2,9 @@ package com.example.prachisingh.cpi_ur.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,14 +12,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.prachisingh.cpi_ur.adapters.DateListAdapter;
 import com.example.prachisingh.cpi_ur.models.Shop;
+import com.example.prachisingh.cpi_ur.recievers.ConnectivityReceiver;
 import com.example.prachisingh.cpi_ur.responses.userDatesResponse;
 import com.example.prachisingh.cpi_ur.network.ApiClient;
 import com.example.prachisingh.cpi_ur.network.ApiInterface;
 import com.example.prachisingh.cpi_ur.R;
+import com.example.prachisingh.cpi_ur.utils.IOHelper;
+import com.example.prachisingh.cpi_ur.utils.MyApplication;
+import com.example.prachisingh.cpi_ur.utils.Utils;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -58,6 +70,31 @@ public class UserDateList extends AppCompatActivity {
         datelist=new ArrayList<>() ;
         map=new HashMap<>();
         adapter=new DateListAdapter(UserDateList.this,datelist,shopsTOVisit,map);
+        if (!Utils.isConnected())
+            Snackbar.make(recyclerView, "OFFLINE MODE", Snackbar.LENGTH_INDEFINITE).show();
+        MyApplication.getInstance().setConnectivityListener(new ConnectivityReceiver.ConnectivityReceiverListener() {
+            @Override
+            public void onNetworkConnectionChanged(boolean isConnected) {
+                String message;
+                int color;
+                int duration;
+                if (isConnected) {
+                    message = "ONLINE";
+                    color = Color.WHITE;
+                    duration = Snackbar.LENGTH_SHORT;
+                } else {
+                    message = "OFFLINE MODE";
+                    color = Color.RED;
+                    duration = Snackbar.LENGTH_INDEFINITE;
+                }
+                Snackbar snackbar = Snackbar
+                        .make(recyclerView, message, duration);
+                View sbView = snackbar.getView();
+                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                textView.setTextColor(color);
+                snackbar.show();
+            }
+        });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -82,6 +119,24 @@ public class UserDateList extends AppCompatActivity {
         progress=new ProgressDialog(this);
         progress.setMessage("Fetching Schedule Dates");
         progress.show();
+        if (!Utils.isConnected()){
+            // Access local Database
+            Gson gson = new Gson();
+            Type type = new TypeToken<userDatesResponse>() {}.getType();
+            String json = IOHelper.stringFromAsset(this, "gtscdl");
+            userDatesResponse response = gson.fromJson(json, type);
+            datelist.addAll(response.getData().keySet());
+            map.putAll(response.getData());
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progress.cancel();
+                    adapter.notifyDataSetChanged();
+                }
+            },800);
+            return;
+        }
+        // else fetch from network
         Log.i("month",String.valueOf(month));
         Log.i("year",String.valueOf(year));
         ApiInterface apiInterface= ApiClient.getAuthorizedApiInterface();

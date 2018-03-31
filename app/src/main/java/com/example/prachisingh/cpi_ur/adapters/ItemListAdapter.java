@@ -1,6 +1,8 @@
 package com.example.prachisingh.cpi_ur.adapters;
 
+import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,6 +14,9 @@ import android.widget.TextView;
 
 import com.example.prachisingh.cpi_ur.R;
 import com.example.prachisingh.cpi_ur.models.Item;
+import com.example.prachisingh.cpi_ur.recievers.ConnectivityReceiver;
+import com.example.prachisingh.cpi_ur.room.CPIDatabase;
+import com.example.prachisingh.cpi_ur.utils.MyApplication;
 
 import java.util.ArrayList;
 
@@ -23,6 +28,25 @@ public class ItemListAdapter extends BaseAdapter {
     ArrayList<Item> mItemList;
     Context mContext;
     OnItemClickListener mListener;
+
+    class ItemRunnable implements Runnable{
+        Item item;
+        ItemListAdapter adapter;
+
+        public ItemRunnable(Item item, ItemListAdapter adapter) {
+            this.item = item;
+            this.adapter = adapter;
+        }
+
+        @Override
+        public void run() {
+            Item dbItem = CPIDatabase.getInstance(mContext).itemDao().getItemWithId(item.getItemId());
+            if (dbItem != null){
+                item.setPrice(dbItem.price);
+                adapter.notifyDataSetChanged();
+            }
+        }
+    }
 
     public ItemListAdapter(Context context, ArrayList<Item> objects, OnItemClickListener listener) {
         mContext = context;
@@ -53,7 +77,7 @@ public class ItemListAdapter extends BaseAdapter {
             listItem = LayoutInflater.from(mContext).inflate(R.layout.item_shop_item, parent, false);
 
         Item currentItem = mItemList.get(position);
-
+        new Thread(new ItemRunnable(currentItem, this));
         TextView itemNameView = listItem.findViewById(R.id.item_name_view);
         itemNameView.setText(currentItem.getName());
         TextView priceView = listItem.findViewById(R.id.item_price_view);
