@@ -93,6 +93,7 @@ public class UserDateList extends AppCompatActivity {
                 TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
                 textView.setTextColor(color);
                 snackbar.show();
+                getDates(month, year);
             }
         });
         recyclerView.setAdapter(adapter);
@@ -133,7 +134,7 @@ public class UserDateList extends AppCompatActivity {
                     progress.cancel();
                     adapter.notifyDataSetChanged();
                 }
-            },800);
+            },500);
             return;
         }
         // else fetch from network

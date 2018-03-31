@@ -75,18 +75,15 @@ public class ScheduleActivity extends AppCompatActivity {
                 int duration;
                 if (isConnected) {
                     message = "ONLINE";
-                    color = Color.WHITE;
                     duration = Snackbar.LENGTH_SHORT;
                 } else {
                     message = "OFFLINE MODE";
-                    color = Color.RED;
                     duration = Snackbar.LENGTH_INDEFINITE;
                 }
                 Snackbar snackbar = Snackbar
                         .make(recyclerView, message, duration);
                 View sbView = snackbar.getView();
                 TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-                textView.setTextColor(color);
                 snackbar.show();
             }
         });

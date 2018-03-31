@@ -101,6 +101,7 @@ public class ItemListActivity extends AppCompatActivity implements ItemListAdapt
                 TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
                 textView.setTextColor(color);
                 snackbar.show();
+                getShopList();
             }
         });
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.widget.Toast;
 
 import com.example.prachisingh.cpi_ur.utils.MyApplication;
 import com.example.prachisingh.cpi_ur.utils.Utils;
@@ -32,6 +33,9 @@ public class ConnectivityReceiver
         Utils.setConnected(isConnected);
         if (isConnected){
             // check for queue
+            Toast.makeText(context, "ONLINE", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(context, "OFFLINE", Toast.LENGTH_SHORT).show();
         }
         if (connectivityReceiverListener != null) {
             connectivityReceiverListener.onNetworkConnectionChanged(isConnected);
